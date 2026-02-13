@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us | Gully Classes Foundation</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="main-header">
+  <nav class="navbar">
+    <div class="logo-box">
+  <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Gully Classes Logo">
+  <span>Gully Classes</span>
+</div>
+
+    <ul class="nav-links">
+      <li><a href="{{ url_for('index') }}">Home</a></li>
+      <li><a href="{{ url_for('about') }}">About</a></li>
+      <li><a href="{{ url_for('services') }}">Services</a></li>
+      <li><a href="{{ url_for('gallery') }}">Gallery</a></li>
+      <li><a href="{{ url_for('contact') }}">Contact</a></li>
+      <li><a href="{{ url_for('donate') }}" class="donate-btn-nav">Donate ❤️</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ================= CONTACT HERO ================= -->
+<section class="contact-hero">
+  <div class="contact-hero-content">
+    <h1>Get In Touch</h1>
+    <p>We’d love to hear from you</p>
+  </div>
+</section>
+
+<!-- ================= CONTACT SECTION ================= -->
+<section class="contact-section">
+  <div class="contact-container">
+
+    <!-- Contact Info -->
+    <div class="contact-info">
+      <h2>Contact Information</h2>
+
+      <div class="info-box">
+        <span>📍</span>
+        <p>Mumbai, Maharashtra, India</p>
+      </div>
+
+      <div class="info-box">
+        <span>📞</span>
+        <p>+91 98765 43210</p>
+      </div>
+
+      <div class="info-box">
+        <span>✉️</span>
+        <p>gullyclasses@gmail.com</p>
+      </div>
+    </div>
+
+    <!-- Contact Form -->
+    <div class="contact-form">
+      <h2>Send Us a Message</h2>
+
+      <form method="POST" action="{{ url_for('contact') }}">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <input type="tel" name="phone" placeholder="Phone Number" required>
+        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <p>© 2026 Gully Classes Foundation | Education for All</p>
+</footer>
+
+</body>
+</html>

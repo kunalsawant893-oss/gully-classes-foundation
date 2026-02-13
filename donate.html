@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Donate | Gully Classes Foundation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+  <style>
+    body {
+      background: linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)),
+      url("{{ url_for('static', filename='images/donate-bg.png') }}") center/cover fixed;
+    }
+
+    .donate-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
+
+    .donate-box {
+      background: rgba(0, 0, 0, 0.75);
+      color: #fff;
+      max-width: 450px;
+      width: 100%;
+      padding: 35px;
+      border-radius: 18px;
+      box-shadow: 0 0 40px rgba(255, 0, 0, 0.4);
+      text-align: center;
+      animation: fadeUp 1s ease;
+    }
+
+    @keyframes fadeUp {
+      from { transform: translateY(40px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .donate-box h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+      color: #ff4d4d;
+    }
+
+    .donate-box p {
+      font-size: 15px;
+      opacity: 0.9;
+      margin-bottom: 20px;
+    }
+
+    .donate-box input,
+    .donate-box select {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      font-size: 15px;
+    }
+
+    .amount-options {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+
+    .amount-options button {
+      background: transparent;
+      border: 1px solid #ff4d4d;
+      color: #fff;
+      padding: 8px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .amount-options button:hover {
+      background: #ff4d4d;
+    }
+
+    .donate-btn {
+      width: 100%;
+      background: linear-gradient(45deg, #ff4d4d, #ff0000);
+      border: none;
+      padding: 14px;
+      border-radius: 30px;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: 0.3s;
+    }
+
+    .donate-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(255, 77, 77, 0.6);
+    }
+
+    /* ===== QR SECTION ===== */
+    .qr-section {
+      margin-top: 25px;
+      padding-top: 20px;
+      border-top: 1px dashed rgba(255,255,255,0.3);
+    }
+
+    .qr-section h3 {
+      color: #ffd369;
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    .qr-section img {
+      width: 220px;
+      margin: 10px 0;
+      border-radius: 12px;
+      background: #fff;
+      padding: 10px;
+    }
+
+    .upi-id {
+      font-size: 14px;
+      background: rgba(255,255,255,0.1);
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 8px;
+      margin-top: 5px;
+    }
+
+    .secure-note {
+      margin-top: 15px;
+      font-size: 13px;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="main-header">
+  <nav class="navbar">
+    <div class="logo-box">
+  <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Gully Classes Logo">
+  <span>Gully Classes</span>
+</div>
+
+    <ul class="nav-links">
+      <li><a href="{{ url_for('index') }}">Home</a></li>
+      <li><a href="{{ url_for('about') }}">About</a></li>
+      <li><a href="{{ url_for('services') }}">Services</a></li>
+      <li><a href="{{ url_for('gallery') }}">Gallery</a></li>
+      <li><a href="{{ url_for('contact') }}">Contact</a></li>
+      <li><a href="{{ url_for('donate') }}" class="donate-btn-nav">Donate ❤️</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="donate-section">
+  <div class="donate-box">
+
+    <h1>Support a Dream ❤️</h1>
+    <p>Your donation helps us educate students who deserve a brighter future.</p>
+
+    <form id="donationForm" method="POST">
+  <input type="text" name="name" placeholder="Your Name" required>
+  <input type="email" name="email" placeholder="Your Email" required>
+
+  <div class="amount-options">
+    <button type="button" onclick="setAmount(500)">₹500</button>
+    <button type="button" onclick="setAmount(1000)">₹1000</button>
+    <button type="button" onclick="setAmount(2000)">₹2000</button>
+  </div>
+
+  <input type="number" id="amount" name="amount" placeholder="Enter Amount (₹)" required>
+
+  <select name="payment_method" required>
+    <option value="">Select Payment Method</option>
+    <option value="UPI">UPI</option>
+  </select>
+
+  <!-- IMPORTANT -->
+  <button type="button" class="donate-btn" onclick="openQR()">Donate Now ❤️</button>
+  </form>
+
+    <!-- 🔥 QR CODE SECTION -->
+    <div class="qr-section">
+      <h3>OR Scan UPI QR to Donate</h3>
+      <img src="{{ url_for('static', filename='images/upi-qr.png') }}" alt="UPI QR Code">
+      <div class="upi-id">UPI ID: yourupi@bank</div>
+      <p style="font-size:13px;margin-top:8px;">Google Pay • PhonePe • Paytm • BHIM</p>
+    </div>
+
+    <div class="secure-note">
+      🔒 100% Secure • Transparent • Impactful
+    </div>
+
+  </div>
+</section>
+
+<script>
+  function setAmount(value) {
+    document.getElementById("amount").value = value;
+  }
+</script>
+
+<!-- QR MODAL -->
+<div id="qrModal" class="qr-modal">
+  <div class="qr-box">
+    <h2>Scan & Pay via UPI</h2>
+
+    <img src="{{ url_for('static', filename='images/upi-qr.png') }}" alt="UPI QR">
+
+    <p>After payment, click below</p>
+
+    <button onclick="submitDonation()">I’ve Paid ✅</button>
+    <button class="close-btn" onclick="closeQR()">Cancel ❌</button>
+  </div>
+</div>
+
+<script>
+function openQR() {
+  const amount = document.getElementById("amount").value;
+  if (!amount || amount <= 0) {
+    alert("Please enter donation amount");
+    return;
+  }
+  document.getElementById("qrModal").style.display = "flex";
+}
+
+function closeQR() {
+  document.getElementById("qrModal").style.display = "none";
+}
+
+function submitDonation() {
+  document.getElementById("donationForm").submit();
+}
+</script>
+
+
+</body>
+</html>

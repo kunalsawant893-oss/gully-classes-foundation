@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery | Gully Classes Foundation</title>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="main-header">
+  <nav class="navbar">
+    <div class="logo-box">
+  <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Gully Classes Logo">
+  <span>Gully Classes</span>
+</div>
+
+    <ul class="nav-links">
+      <li><a href="{{ url_for('index') }}">Home</a></li>
+      <li><a href="{{ url_for('about') }}">About</a></li>
+      <li><a href="{{ url_for('services') }}">Services</a></li>
+      <li><a href="{{ url_for('gallery') }}">Gallery</a></li>
+      <li><a href="{{ url_for('contact') }}">Contact</a></li>
+      <li><a href="{{ url_for('donate') }}" class="donate-btn-nav">Donate ❤️</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ================= GALLERY HERO ================= -->
+<section class="gallery-hero">
+  <div class="gallery-hero-content">
+    <h1>Our Gallery</h1>
+    <p>Moments that define our journey</p>
+  </div>
+</section>
+
+<!-- ================= GALLERY SECTION ================= -->
+<section class="gallery-section">
+  <div class="gallery-grid">
+
+    <div class="gallery-card" onclick="openPopup(this)">
+      <img src="{{ url_for('static', filename='images/g1.jpg') }}" alt="Students Studying">
+      <div class="overlay"><span>Bright Future</span></div>
+    </div>
+
+    <div class="gallery-card" onclick="openPopup(this)">
+      <img src="{{ url_for('static', filename='images/g2.jpg') }}" alt="Class Session">
+      <div class="overlay"><span>Happy Students</span></div>
+    </div>
+
+    <div class="gallery-card" onclick="openPopup(this)">
+      <img src="{{ url_for('static', filename='images/g3.jpg') }}" alt="Teaching">
+      <div class="overlay"><span>Class Sessions</span></div>
+    </div>
+
+    <div class="gallery-card" onclick="openPopup(this)">
+      <img src="{{ url_for('static', filename='images/g4.jpg') }}" alt="Focus">
+      <div class="overlay"><span>Teaching</span></div>
+    </div>
+
+    <div class="gallery-card" onclick="openPopup(this)">
+      <img src="{{ url_for('static', filename='images/g5.jpg') }}" alt="Group Learning">
+      <div class="overlay"><span>Focus & Discipline</span></div>
+    </div>
+
+    <div class="gallery-card" onclick="openPopup(this)">
+      <img src="{{ url_for('static', filename='images/g6.jpg') }}" alt="Skill Building">
+      <div class="overlay"><span>Group Learning</span></div>
+    </div>
+
+    <div class="gallery-card" onclick="openPopup(this)">
+      <img src="{{ url_for('static', filename='images/g7.jpg') }}" alt="Mentorship">
+      <div class="overlay"><span>Skill Building</span></div>
+    </div>
+
+    <div class="gallery-card" onclick="openPopup(this)">
+      <img src="{{ url_for('static', filename='images/g8.jpg') }}" alt="Happy Students">
+      <div class="overlay"><span>Mentorship</span></div>
+    </div>
+
+    <div class="gallery-card" onclick="openPopup(this)">
+      <img src="{{ url_for('static', filename='images/g9.jpg') }}" alt="Bright Future">
+      <div class="overlay"><span>Student Studying</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= IMAGE POPUP ================= -->
+<div class="popup" id="popup">
+  <span class="close" onclick="closePopup()">&times;</span>
+  <img id="popup-img">
+</div>
+
+<script>
+  const popup = document.getElementById("popup");
+  const popupImg = document.getElementById("popup-img");
+
+  function openPopup(card) {
+    popup.style.display = "flex";
+    popupImg.src = card.querySelector("img").src;
+  }
+
+  function closePopup() {
+    popup.style.display = "none";
+  }
+</script>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <p>© 2026 Gully Classes Foundation | Inspiring Education</p>
+</footer>
+
+</body>
+</html>
